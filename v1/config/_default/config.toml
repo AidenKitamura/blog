@@ -1,0 +1,13 @@
+## Default Config
+baseURL = "https://kitamura.moe/"
+# languageCode = "en-us"
+title = "Poffy亭"
+theme = "PaperMod"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = "true"
+enableEmoji = "true"
+enableInlineShortcodes = "true"
+
+## Search Page ##
+[outputs]
+home = ["HTML", "RSS", "JSON"]

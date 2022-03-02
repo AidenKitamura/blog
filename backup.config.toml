@@ -1,0 +1,137 @@
+baseURL = "https://example.org/"
+# languageCode = "en-us"
+title = "Poffy亭"
+theme = "PaperMod"
+# DefaultContentLanguage = "en"
+
+#### Landing Page Settings ####
+[languages]
+
+## Multilingual landing page settings
+[languages.en]
+languageName = "English"
+weight = 1
+contentDir = "content/en"
+
+[languages.en.params.profileMode]
+enabled = "true"
+title = "Aiden at Poffy亭"
+subtitle = "My corner for posting random stuff"
+imageUrl = "profilePhoto.jpg"
+imageWidth = "150"
+imageHeight = "150"
+
+[[languages.en.params.profileMode.buttons]]
+name = "Posts"
+url = "/posts"
+
+[[languages.en.params.profileMode.buttons]]
+name = "About"
+url = "/about"
+
+## Eng Menu ##
+[languages.en.menu]
+[[languages.en.menu.main]]
+identifier = "Posts"
+name = "Posts"
+url = "/posts/"
+weight = 10
+
+[[languages.en.menu.main]]
+identifier = "Tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[languages.en.menu.main]]
+identifier = "Archives"
+name = "Archives"
+url = "/archives/"
+weight = 30
+
+[[languages.en.menu.main]]
+identifier = "Search"
+name = "Search"
+url = "/search/"
+weight = 40
+
+[[languages.en.menu.main]]
+identifier = "About"
+name = "About"
+url = "/about/"
+weight = 50
+
+[languages.zh]
+languageName = "简体中文"
+weight = 2
+contentDir = "content/zh"
+
+[languages.zh.params.profileMode]
+enabled = "true"
+title = "Poffy亭的Aiden"
+subtitle = "我碎碎念的一角"
+imageUrl = "profilePhoto.jpg"
+imageWidth = "150"
+imageHeight = "150"
+
+[[languages.zh.params.profileMode.buttons]]
+name = "文章"
+url = "/zh/posts"
+
+[[languages.zh.params.profileMode.buttons]]
+name = "关于"
+url = "/zh/about"
+
+## Menu ##
+[languages.zh.menu]
+[[languages.zh.menu.main]]
+identifier = "zhPosts"
+name = "文章"
+url = "/zh/posts/"
+weight = 10
+
+[[languages.zh.menu.main]]
+identifier = "zhTags"
+name = "标签"
+url = "/zh/tags/"
+weight = 20
+
+[[languages.zh.menu.main]]
+identifier = "zhArchives"
+name = "归档"
+url = "/zh/archives/"
+weight = 30
+
+[[languages.zh.menu.main]]
+identifier = "zhSearch"
+name = "搜索"
+url = "/zh/search/"
+weight = 40
+
+[[languages.zh.menu.main]]
+identifier = "zhAbout"
+name = "关于"
+url = "/zh/about/"
+weight = 50
+
+## Social Network Hyperlinks ##
+[[params.socialIcons]]
+name = "instagram"
+url = "https://instagram.com/aidenclx"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:xu_aiden@outlook.com"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/AidenKitamura"
+
+[[params.socialIcons]]
+name = "other"
+url = "https://500px.com/p/aiden_clx"
+
+## Search Page ##
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+#### End of Landing Page Settings ####

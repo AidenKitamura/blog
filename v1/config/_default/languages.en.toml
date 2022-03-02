@@ -1,0 +1,62 @@
+# English Landing Page Settings
+languageName = "English"
+weight = 1
+contentDir = "content/en"
+
+## Taxonomies Settings for English Keywords
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+[params.profileMode]
+enabled = "true"
+title = "Aiden at Poffy亭"
+subtitle = "My corner for posting random stuff"
+imageUrl = "profilePhoto.jpg"
+imageWidth = "150"
+imageHeight = "150"
+
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "posts"
+
+[[params.profileMode.buttons]]
+name = "About"
+url = "about"
+
+# Menu Settings
+[[menu.main]]
+identifier = "Posts"
+name = "Posts"
+url = "posts"
+weight = 10
+
+[[menu.main]]
+identifier = "Categories"
+name = "Categories"
+url = "categories"
+weight = 20
+
+[[menu.main]]
+identifier = "Tags"
+name = "Tags"
+url = "tags"
+weight = 30
+
+[[menu.main]]
+identifier = "Archives"
+name = "Archives"
+url = "archives"
+weight = 40
+
+[[menu.main]]
+identifier = "Search"
+name = "Search"
+url = "search"
+weight = 50
+
+[[menu.main]]
+identifier = "About"
+name = "About"
+url = "about"
+weight = 60

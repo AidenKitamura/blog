@@ -1,7 +1,4 @@
 # My Blog
-A new blog design using Hugo
-## Checklist
-- Photo Booth Function
-- Map Integration
-- In-site Posts References
-- Memo Function
+A new blog using Hugo
+## Reference
+Currently the blog is using [Paper-Mod](https://github.com/adityatelange/hugo-PaperMod)

@@ -1,0 +1,62 @@
+# Chinese Landing Page Settings
+languageName = "简体中文"
+weight = 2
+contentDir = "content/zh"
+
+## Taxonomies Settings Chinese Keywords
+[taxonomies]
+category = "分类"
+tag = "标签"
+
+[params.profileMode]
+enabled = "true"
+title = "Poffy亭的Aiden"
+subtitle = "我碎碎念的一角"
+imageUrl = "profilePhoto.jpg"
+imageWidth = "150"
+imageHeight = "150"
+
+[[params.profileMode.buttons]]
+name = "文章"
+url = "文章"
+
+[[params.profileMode.buttons]]
+name = "关于"
+url = "about"
+
+# Chinese Menu Settings
+[[menu.main]]
+identifier = "zhPosts"
+name = "文章"
+url = "文章"
+weight = 10
+
+[[menu.main]]
+identifier = "zhCategories"
+name = "分类"
+url = "分类"
+weight = 20
+
+[[menu.main]]
+identifier = "zhTags"
+name = "标签"
+url = "标签"
+weight = 30
+
+[[menu.main]]
+identifier = "zhArchives"
+name = "归档"
+url = "archives"
+weight = 40
+
+[[menu.main]]
+identifier = "zhSearch"
+name = "搜索"
+url = "search"
+weight = 50
+
+[[menu.main]]
+identifier = "zhAbout"
+name = "关于"
+url = "about"
+weight = 60
