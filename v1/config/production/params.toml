@@ -27,7 +27,7 @@ url = "mailto:kitamurainosuke@gmail.com"
 #### End of Landing Page Settings ####
 
 ## SEO Enhance ##
-# env = "production"
+env = "production"
 
 ## Author ##
 author = "AidenCLX"

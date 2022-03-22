@@ -4,9 +4,9 @@ baseURL = "https://kitamura.moe/"
 title = "Poffy亭"
 theme = "PaperMod"
 defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = true
-enableEmoji = true
-enableInlineShortcodes = true
+defaultContentLanguageInSubdir = "true"
+enableEmoji = "true"
+enableInlineShortcodes = "true"
 
 ## Search Page ##
 [outputs]

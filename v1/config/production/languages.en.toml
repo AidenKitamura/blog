@@ -9,7 +9,7 @@ category = "categories"
 tag = "tags"
 
 [params.profileMode]
-enabled = true
+enabled = "true"
 title = "Aiden at Poffy亭"
 subtitle = "My corner for posting random stuff"
 imageUrl = "profilePhoto.jpg"

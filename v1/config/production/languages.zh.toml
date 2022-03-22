@@ -12,7 +12,7 @@ category = "分类"
 tag = "标签"
 
 [params.profileMode]
-enabled = true
+enabled = "true"
 title = "Poffy亭的Aiden"
 subtitle = "我碎碎念的一角"
 imageUrl = "profilePhoto.jpg"
