@@ -4,7 +4,7 @@ date: 2022-01-06T22:22:24+08:00
 draft: false
 categories: ["Photography"]
 tags: ["Personal Project", "Context Portrait", "Index"]
-weight: 1
+# weight: 1
 cover:
     image: "20220106_Cover.jpeg"
     # can also paste direct link from external site

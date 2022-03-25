@@ -7,23 +7,6 @@ ShowCodeCopyButtons = true
 ShowToc = true
 TocOpen = false
 
-## Social Network Hyperlinks ##
-[[socialIcons]]
-name = "instagram"
-url = "https://instagram.com/aidenclx"
-
-[[socialIcons]]
-name = "github"
-url = "https://github.com/AidenKitamura"
-
-[[socialIcons]]
-name = "telegram"
-url = "https://t.me/une_barque"
-
-[[socialIcons]]
-name = "email"
-url = "mailto:kitamurainosuke@gmail.com"
-
 #### End of Landing Page Settings ####
 
 ## SEO Enhance ##

@@ -24,6 +24,27 @@ url = "posts"
 name = "About"
 url = "about"
 
+## Social Network Hyperlinks ##
+[[params.socialIcons]]
+name = "instagram"
+url = "https://instagram.com/aidenclx"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/AidenKitamura"
+
+[[params.socialIcons]]
+name = "telegram"
+url = "https://t.me/une_barque"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:kitamurainosuke@gmail.com"
+
+[[params.socialIcons]]
+name = "rss"
+url = "localhost:1313/en/posts/index.xml"
+
 # Menu Settings
 [[menu.main]]
 identifier = "Posts"
@@ -43,15 +64,15 @@ name = "Tags"
 url = "tags"
 weight = 30
 
-[[menu.main]]
-identifier = "Archives"
-name = "Archives"
-url = "archives"
-weight = 40
+#[[menu.main]]
+#identifier = "Archives"
+#name = "Archives"
+#url = "archives"
+#weight = 40
 
 [[menu.main]]
 identifier = "Search"
-name = "Search"
+name = "🔎︎"
 url = "search"
 weight = 50
 
@@ -59,4 +80,4 @@ weight = 50
 identifier = "About"
 name = "About"
 url = "about"
-weight = 60
+weight = 40

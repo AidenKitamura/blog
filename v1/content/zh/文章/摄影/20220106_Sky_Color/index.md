@@ -4,7 +4,7 @@ date: 2022-01-06T22:22:24+08:00
 draft: false
 分类: ["摄影"]
 标签: ["个人项目", "环境人像", "目录或索引"]
-weight: 1
+# weight: 1
 cover:
     image: "20220106_Cover.jpeg"
     # can also paste direct link from external site

@@ -27,6 +27,27 @@ url = "文章"
 name = "关于"
 url = "about"
 
+## Social Network Hyperlinks ##
+[[params.socialIcons]]
+name = "instagram"
+url = "https://instagram.com/aidenclx"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/AidenKitamura"
+
+[[params.socialIcons]]
+name = "telegram"
+url = "https://t.me/une_barque"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:kitamurainosuke@gmail.com"
+
+[[params.socialIcons]]
+name = "rss"
+url = "https://kitamura.moe/zh/文章/index.xml"
+
 # Chinese Menu Settings
 [[menu.main]]
 identifier = "zhPosts"
@@ -46,15 +67,15 @@ name = "标签"
 url = "标签"
 weight = 30
 
-[[menu.main]]
-identifier = "zhArchives"
-name = "归档"
-url = "archives"
-weight = 40
+# [[menu.main]]
+#identifier = "zhArchives"
+#name = "归档"
+#url = "archives"
+#weight = 40
 
 [[menu.main]]
 identifier = "zhSearch"
-name = "搜索"
+name = "🔎︎"
 url = "search"
 weight = 50
 
@@ -62,4 +83,4 @@ weight = 50
 identifier = "zhAbout"
 name = "关于"
 url = "about"
-weight = 60
+weight = 40
