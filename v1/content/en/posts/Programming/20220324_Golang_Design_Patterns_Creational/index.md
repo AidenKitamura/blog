@@ -1,6 +1,6 @@
 ---
 title: "Golang | Design Patterns - Creational"
-date: 2022-03-24T22:41:00+08:00
+date: 2022-03-12T22:41:00+08:00
 draft: false
 categories: ["Programming"]
 tags: ["Golang", "Design Patterns"]
@@ -239,3 +239,189 @@ func GetBuilder() Builder {
 ```
 
 Done!
+
+---
+
+## Abstract Factory
+
+Being very similar to the factory design pattern, abstract factory also provides an abstration to create instances. The difference is that the abstract factory itself is an abstraction, whereas the factory is concrete. So here we use an interface to represent the abstract factory:
+
+```Go
+type AbstractFactory interface {
+	ProducePhone() Phone
+}
+```
+
+Then we need to add the wanted concrete factories, private ones, of course, with their products and manufacturing methods.
+
+```Go
+type Phone struct {
+	brand string
+}
+
+type samFactory struct {
+}
+
+type applFactory struct {
+}
+
+func (s samFactory) ProducePhone() Phone {
+	return Phone{"Sam"}
+}
+
+func (a applFactory) ProducePhone() Phone {
+	return Phone{"Appl"}
+}
+```
+
+Since we encapsulated the factories, we need an extra function to help us get these factories:
+
+```Go
+func GetAbstractFactory(brand string) (AbstractFactory, error) {
+	switch brand {
+	case "Sam":
+		return samFactory{}, nil
+	case "Appl":
+		return applFactory{}, nil
+	}
+	return nil, fmt.Errorf("invalid brand name %s", brand)
+}
+```
+
+Done!
+
+---
+
+## Prototype
+
+Prorotype is used to help create cloned objects. When an object is complicated or has some private fields, it would be good to provide a clone method with it so that a new object with the same fields could be created.
+
+Let's use linked list as an example. When cloning a linked list, we could not just use the pointer to the first element, or only "clone" the first element, which will cause serious problem because of in-place operations. Let's define a linked list first:
+
+```go
+type linkedList struct {
+	val  int
+	next *linkedList
+}
+
+func (l *linkedList) GetVal() int {
+	return l.val
+}
+
+func (l *linkedList) Next() LinkedList {
+	return l.next
+}
+
+func (l *linkedList) Clone() LinkedList {
+	startNode := &linkedList{}
+	cur := startNode
+	for ptr := l; ptr != nil; ptr = ptr.next {
+		cur.val = ptr.val
+		if ptr.next != nil {
+			cur.next = &linkedList{}
+			cur = cur.next
+		} else {
+			cur.next = nil
+		}
+	}
+	return startNode
+}
+```
+
+As we did before, the ```linkedList``` is private. In this case, we need an interface to operate on this:
+
+```go
+type LinkedList interface {
+	GetVal() int
+	Next() LinkedList
+	Clone() LinkedList
+}
+```
+
+> __NOTE:__ There is a problem with Golang's interface implementation judgement. Take a look at the code above, the ```Next()``` method and ```Clone()``` method have a return type of ```LinkedList```, which is not beautiful because in Golang, the return type of a method from an interface must match with the method's return type from a concrete type. You cannot use the type of the struct as the return type.
+
+---
+
+## Object Pool
+
+Object pool is a pattern that one initialize a pool of various objects first, then whenever the user needs one, he/she acquire an object from the pool and use it. This pattern is especially useful when initializing an object is expensive or object isn't subject to changes, but only usages.
+
+We create the sample objects first:
+
+```go
+type object struct {
+	name string
+}
+
+func (o object) GetName() string {
+	return o.name
+}
+
+type Object interface {
+	GetName() string
+}
+```
+
+In my example I adopted singleton to make sure we don't re-initialize the pool. However it is possible when we need multiple pools, we initialize them respectively:
+
+```go
+var once sync.Once
+
+var P *pool
+
+type pool struct {
+	*sync.Mutex
+	idle   []object
+	active []object
+}
+
+func (p *pool) Acquire(name string) (Object, error) {
+	p.Lock()
+	defer p.Unlock()
+	for i := 0; i < len(p.idle); i++ {
+		if p.idle[i].name == name {
+			res := p.idle[i]
+			p.idle[i] = p.idle[len(p.idle)-1]
+			p.idle = p.idle[:len(p.idle)-1]
+			p.active = append(p.active, res)
+			return res, nil
+		}
+	}
+	return nil, fmt.Errorf("cannot find object with name %s", name)
+}
+
+func (p *pool) Free(name string) error {
+	p.Lock()
+	defer p.Unlock()
+	for i := 0; i < len(p.active); i++ {
+		if p.active[i].name == name {
+			res := p.active[i]
+			p.active[i] = p.active[len(p.active)-1]
+			p.active = p.active[:len(p.active)-1]
+			p.idle = append(p.idle, res)
+			return nil
+		}
+	}
+	return fmt.Errorf("cannot free object with name %s", name)
+}
+
+type Pool interface {
+	Acquire(name string) (Object, error)
+	Free(name string) error
+}
+
+func InitPool(cap int) Pool {
+	once.Do(func() {
+		P = &pool{}
+		P.Mutex = new(sync.Mutex)
+		P.active = make([]object, 0)
+		P.idle = make([]object, 0)
+		for i := 0; i < cap; i++ {
+			P.idle = append(P.idle, object{fmt.Sprintf("%d", i)})
+		}
+	})
+	return P
+}
+```
+
+Thank you for reading this post. More design patterns will be covered in other posts in the future!

@@ -1,6 +1,6 @@
 ---
 title: "Golang|设计模式-创造"
-date: 2022-03-24T22:41:00+08:00
+date: 2022-03-12T22:41:00+08:00
 draft: false
 分类: ["编程"]
 标签: ["Golang", "设计模式"]
@@ -240,3 +240,189 @@ func GetBuilder() Builder {
 ```
 
 完成！
+
+---
+
+## Abstract Factory
+
+与factory模式非常的类似，abstract factory模式也是用于创建实例的。区别在于，abstract factory本身就是一层抽象，而factory模式中factory是concrete的。因此在这里我们用一个接口来表示abstract factory：
+
+```Go
+type AbstractFactory interface {
+	ProducePhone() Phone
+}
+```
+
+然后我们加入需要的工厂以及他们的产品和制造办法，当然是private的。
+
+```Go
+type Phone struct {
+	brand string
+}
+
+type samFactory struct {
+}
+
+type applFactory struct {
+}
+
+func (s samFactory) ProducePhone() Phone {
+	return Phone{"Sam"}
+}
+
+func (a applFactory) ProducePhone() Phone {
+	return Phone{"Appl"}
+}
+```
+
+因为我们抽象了工厂，我们需要一个额外的函数来帮助我们获取这些工厂：
+
+```Go
+func GetAbstractFactory(brand string) (AbstractFactory, error) {
+	switch brand {
+	case "Sam":
+		return samFactory{}, nil
+	case "Appl":
+		return applFactory{}, nil
+	}
+	return nil, fmt.Errorf("invalid brand name %s", brand)
+}
+```
+
+好了！
+
+---
+
+## Prototype
+
+Prorotype是用于帮助复制实例的。当一个实例非常复杂，亦或有一些private的变量，提供一个```Clone()```方法是非常有用的，由此新的实例拷贝就能够被方便的获取。
+
+我们用链表来举例子。当复制链表时，我们不能够直接使用第一个元素的指针拷贝作为返回值，这样会带来一个问题，即后面的元素依旧指向原来的元素。我们对他们做修改的话，会在新的复制链表中体现出来。让我们先来定义一个链表：
+
+```go
+type linkedList struct {
+	val  int
+	next *linkedList
+}
+
+func (l *linkedList) GetVal() int {
+	return l.val
+}
+
+func (l *linkedList) Next() LinkedList {
+	return l.next
+}
+
+func (l *linkedList) Clone() LinkedList {
+	startNode := &linkedList{}
+	cur := startNode
+	for ptr := l; ptr != nil; ptr = ptr.next {
+		cur.val = ptr.val
+		if ptr.next != nil {
+			cur.next = &linkedList{}
+			cur = cur.next
+		} else {
+			cur.next = nil
+		}
+	}
+	return startNode
+}
+```
+
+就像我们过去所做的，这```linkedList```是private的。因此我们需要一个接口来帮助我们：
+
+```go
+type LinkedList interface {
+	GetVal() int
+	Next() LinkedList
+	Clone() LinkedList
+}
+```
+
+> __注意：__ Golang对于接口的实现判定有一些小问题。请看上面的代码，```Next()```方法和```Clone()```方法均有```LinkedList```的返回类型，这一点都不优雅。但在Golang中接口的返回类型必须和函数的返回类型保持一致才被认为是实现了接口。在创建递归的结构时，你不能够用结构的指针本身作为返回类型。
+
+---
+
+## Object Pool
+
+Object pool是一个先初始化一个池，然后当用户需要使用实例时直接从中获取的设计模式。这个模式在初始化实例非常昂贵，或实例几乎不会变化时，非常有用。
+
+我们先创建一个样例object：
+
+```go
+type object struct {
+	name string
+}
+
+func (o object) GetName() string {
+	return o.name
+}
+
+type Object interface {
+	GetName() string
+}
+```
+
+在我的例子中，我使用了Singleton模式来确保我们不会多此初始化池。然而这并不是必须的，根据需要我们也可以初始化多个池来使用：
+
+```go
+var once sync.Once
+
+var P *pool
+
+type pool struct {
+	*sync.Mutex
+	idle   []object
+	active []object
+}
+
+func (p *pool) Acquire(name string) (Object, error) {
+	p.Lock()
+	defer p.Unlock()
+	for i := 0; i < len(p.idle); i++ {
+		if p.idle[i].name == name {
+			res := p.idle[i]
+			p.idle[i] = p.idle[len(p.idle)-1]
+			p.idle = p.idle[:len(p.idle)-1]
+			p.active = append(p.active, res)
+			return res, nil
+		}
+	}
+	return nil, fmt.Errorf("cannot find object with name %s", name)
+}
+
+func (p *pool) Free(name string) error {
+	p.Lock()
+	defer p.Unlock()
+	for i := 0; i < len(p.active); i++ {
+		if p.active[i].name == name {
+			res := p.active[i]
+			p.active[i] = p.active[len(p.active)-1]
+			p.active = p.active[:len(p.active)-1]
+			p.idle = append(p.idle, res)
+			return nil
+		}
+	}
+	return fmt.Errorf("cannot free object with name %s", name)
+}
+
+type Pool interface {
+	Acquire(name string) (Object, error)
+	Free(name string) error
+}
+
+func InitPool(cap int) Pool {
+	once.Do(func() {
+		P = &pool{}
+		P.Mutex = new(sync.Mutex)
+		P.active = make([]object, 0)
+		P.idle = make([]object, 0)
+		for i := 0; i < cap; i++ {
+			P.idle = append(P.idle, object{fmt.Sprintf("%d", i)})
+		}
+	})
+	return P
+}
+```
+
+感谢您阅读这篇文章！其他的设计模式将在未来的其他文章中讨论。
