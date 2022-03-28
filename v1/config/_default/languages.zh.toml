@@ -1,5 +1,5 @@
 # Chinese Landing Page Settings
-languageName = "简体中文"
+languageName = ":cn: ZH"
 weight = 2
 contentDir = "content/zh"
 

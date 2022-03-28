@@ -1,5 +1,5 @@
 ---
-title: "Golang|设计模式-创造"
+title: "Golang | 设计模式-创造"
 date: 2022-03-12T22:41:00+08:00
 draft: false
 分类: ["编程"]

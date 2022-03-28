@@ -1,5 +1,5 @@
 # English Landing Page Settings
-languageName = "English"
+languageName = ":us: EN"
 weight = 1
 contentDir = "content/en"
 
