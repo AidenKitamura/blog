@@ -1,7 +1,7 @@
 ---
 title: "Thoughts | Nights, Thoughts, and Anxiety"
 date: 2022-03-16T00:11:00+08:00
-draft: true
+draft: false
 categories: ["Thoughts"]
 tags: ["Night", "Psychology"]
 # weight: 1
