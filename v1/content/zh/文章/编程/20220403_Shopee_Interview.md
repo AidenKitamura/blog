@@ -3,7 +3,7 @@ title: "面试 | 我与Shopee的面试"
 date: 2022-04-03T20:31:40+08:00
 draft: false
 分类: ["编程"]
-tags: ["Golang", "计算机科学"]
+标签: ["Golang", "计算机科学"]
 # weight: 1
 cover:
     image: "https://www.hudson.cn/wp-content/cache/bb-plugin/cache/7-most-common-mistakes-1024x731-landscape.png"
