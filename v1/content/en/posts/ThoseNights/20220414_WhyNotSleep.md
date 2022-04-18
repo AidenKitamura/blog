@@ -63,7 +63,7 @@ Fear, fear for dying of the light.
 
 ---
 
-## About nostlgic
+## About nostalgic
 
 I don't know what to put for my current feelings. It is strange. I feel calm, mixed with sorrow, and a slice of satisfaction.
 
