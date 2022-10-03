@@ -61,11 +61,11 @@ name = "分类"
 url = "分类"
 weight = 20
 
-[[menu.main]]
-identifier = "zhTags"
-name = "标签"
-url = "标签"
-weight = 30
+#[[menu.main]]
+#identifier = "zhTags"
+#name = "标签"
+#url = "标签"
+#weight = 30
 
 # [[menu.main]]
 #identifier = "zhArchives"
@@ -83,4 +83,10 @@ weight = 50
 identifier = "zhAbout"
 name = "关于"
 url = "about"
+weight = 40
+
+[[menu.main]]
+identifier = "zhLinks"
+name = "链接"
+url = "links"
 weight = 40

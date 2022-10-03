@@ -58,11 +58,11 @@ name = "Categories"
 url = "categories"
 weight = 20
 
-[[menu.main]]
-identifier = "Tags"
-name = "Tags"
-url = "tags"
-weight = 30
+#[[menu.main]]
+#identifier = "Tags"
+#name = "Tags"
+#url = "tags"
+#weight = 30
 
 #[[menu.main]]
 #identifier = "Archives"
@@ -80,4 +80,10 @@ weight = 50
 identifier = "About"
 name = "About"
 url = "about"
+weight = 40
+
+[[menu.main]]
+identifier = "Links"
+name = "Links"
+url = "links"
 weight = 40
